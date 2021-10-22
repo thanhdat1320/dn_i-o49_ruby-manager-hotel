@@ -1,2 +1,3 @@
 digit:
   length_10: 10
+  length_255: 255

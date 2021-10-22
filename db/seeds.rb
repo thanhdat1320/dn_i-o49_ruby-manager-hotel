@@ -7,7 +7,7 @@ r = Random.new
   status = r.rand(2)
   description = Faker::Lorem.paragraphs(number: 2)
   name = Faker::Company.name
-  Room.create!(
+  room = Room.create!(
     image: image,
     price: price,
     level: level,
@@ -15,4 +15,18 @@ r = Random.new
     description: description,
     name: name,
   )
-end
+end if Room.count < 20
+
+10.times do |n|
+  furniture = Faker::House.furniture
+  RoomAttribute.create!(name: furniture)
+end if RoomAttribute.count < 10
+
+
+rooms = Room.all
+rooms.each do |room| 
+  attributes = RoomAttribute.order(Arel.sql("RANDOM()")).first r.rand(5)
+  attributes.each do |attribute|
+    RoomAttributeGroup.create!(room_id:room.id, room_attribute_id:attribute.id)
+  end
+end if RoomAttributeGroup.count < 10

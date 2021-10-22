@@ -1,4 +1,17 @@
-ActiveRecord::Schema.define(version: 2021_10_22_034135) do
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 2021_10_22_094538) do
+
   create_table "booking_details", force: :cascade do |t|
     t.date "date_in"
     t.date "date_out"
@@ -30,12 +43,19 @@ ActiveRecord::Schema.define(version: 2021_10_22_034135) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "room_attributes", force: :cascade do |t|
-    t.string "name"
+  create_table "room_attribute_groups", force: :cascade do |t|
     t.integer "room_id", null: false
+    t.integer "room_attribute_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["room_id"], name: "index_room_attributes_on_room_id"
+    t.index ["room_attribute_id"], name: "index_room_attribute_groups_on_room_attribute_id"
+    t.index ["room_id"], name: "index_room_attribute_groups_on_room_id"
+  end
+
+  create_table "room_attributes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -69,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_034135) do
   add_foreign_key "booking_details", "rooms"
   add_foreign_key "bookings", "contacts"
   add_foreign_key "bookings", "users"
-  add_foreign_key "room_attributes", "rooms"
+  add_foreign_key "room_attribute_groups", "room_attributes"
+  add_foreign_key "room_attribute_groups", "rooms"
   add_foreign_key "users", "contacts"
 end
