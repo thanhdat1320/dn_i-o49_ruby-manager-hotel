@@ -17,4 +17,21 @@ en:
       last: "Last &raquo;"
       previous: "&lsaquo; Prev"
       next: "Next &rsaquo;"
-      truncate: "&hellip;"  
+      truncate: "&hellip;"
+      log_in: "Log in"
+      account: "Account"
+      profile: "Profile"
+      settings: "Settings"
+      log_out: "Logout"
+  sessions:
+    new:
+      please_sign_in: "Please sign in"
+      password: "Password"
+      forgot_password: "Forgot password"
+      remember_me: "Remember me"
+      log_in: "Login"
+  controllers:
+    sessions_controller:
+      invalid_login: "Invalid login"
+    users_controller:
+      user_not_found: "User not found"
