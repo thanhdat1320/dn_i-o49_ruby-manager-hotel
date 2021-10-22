@@ -1,0 +1,13 @@
+<header class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <%= link_to t(".logo"), id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-custom"><%= link_to t(".home") %></li>
+        <li class="nav-custom"><%= link_to t(".log in") %></li>
+        <li class="nav-custom"><%= link_to t("en"), locale: :en %></li>
+        <li class="nav-custom"><%= link_to t("vi"), locale: :vi %></li>
+      </ul>
+    </nav>
+  </div>
+</header>

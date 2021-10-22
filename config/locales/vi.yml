@@ -1,0 +1,9 @@
+vi:
+  base_title: "Sun khach san"
+  layouts:
+    header:
+      logo: "Sun"
+      home: "Trang chủ"
+      help: "Trợ giúp"
+      log in: "Đăng nhập"
+      
