@@ -2,8 +2,7 @@ class BookingsController < ApplicationController
   before_action :load_bookings, only: %i(index)
   before_action :logged_in_user, :check_session_room_id, only: :create
   before_action :load_bookings, only: %i(index)
-
-  def index; end
+  before_action :logged_in_user, :check_session_room_id, only: :create
 
   def index; end
 
@@ -37,19 +36,6 @@ class BookingsController < ApplicationController
     params.permit(:page, :status)
   end
 
- 
-  private
-
-  # before action
-
-  def load_bookings
-    @bookings = current_user.bookings.status_is filter_params[:status]
-    @bookings = @bookings.pagination_at filter_params[:page]
-    return if @bookings.any?
-
-    flash.now[:warning] = t :empty
-  end
-
   def checkin_param
     session[params[:room_id]]["date_in"]
   end
@@ -63,11 +49,5 @@ class BookingsController < ApplicationController
 
     flash[:danger] = t :not_found
     redirect_to root_path
-  end
- 
-  # param permit
-
-  def filter_params
-    params.permit(:page, :status)
   end
 end
