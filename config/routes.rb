@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     get :login, to: "sessions#new"
     post :login, to: "sessions#create"
     delete :logout, to: "sessions#destroy"
-
-    resources :users, only: :show
+    post :sessions_update, to: "sessions#update"
+    get :confirm, to: "rooms#confirm"
     resources :bookings, only: :index
-    resources :rooms, only: :index
+    resources :rooms, only: [:index, :show]
+    resources :bookings, only: %i(create index)
 
     namespace :admin do
         resources :bookings, only: [:index, :update]
@@ -17,6 +18,10 @@ Rails.application.routes.draw do
             post :import 
           }
         end
+    end
+
+    namespace :staff do
+      resources :bookings, only: %i(index)
     end
   end
 end

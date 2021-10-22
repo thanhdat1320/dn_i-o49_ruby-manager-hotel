@@ -1,7 +1,8 @@
 class Room < ApplicationRecord
   has_many :room_attribute_groups, dependent: :destroy
   has_many :room_attributes, through: :room_attribute_groups
-
+  has_many :booking_details, dependent: :destroy
+  has_many :bookings, through: :booking_details
   enum level: {normal: 0, superior: 1, vip: 2, luxury: 3}
   enum status: {unavailable: 0, available: 1}
 
