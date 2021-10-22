@@ -33,4 +33,16 @@ class Booking < ApplicationRecord
   def self.user_name_search keyword
     joins(:user).where("users.name LIKE ?", "%#{keyword}%")
   end
+
+  def self.create_booking booking, room_id, date_in, date_out
+    ActiveRecord::Base.transaction do
+      booking.save
+      booking.booking_details.create(
+        room_id: room_id,
+        date_in: date_in,
+        date_out: date_out
+      )
+      booking.active! if booking.inactive?
+    end
+  end
 end
