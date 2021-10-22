@@ -1,0 +1,7 @@
+ <span class="position-absolute top-0 start-100 translate-middle p-2 bg-<%= status_color(room) %> border border-light rounded-circle">
+   <span class="visually-hidden"><%= room.status %></span>
+ </span>
+ <span class="position-absolute top-0 end-0 translate-middle badge rounded-pill bg-<%= level_color(room) %>">
+   <%= room.level %>
+   <span class="visually-hidden"><%= room.level %></span>
+ </span>
