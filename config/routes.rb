@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     delete :logout, to: "sessions#destroy"
     post :sessions_update, to: "sessions#update"
     get :confirm, to: "rooms#confirm"
-    resources :bookings, only: :index
     resources :rooms, only: [:index, :show]
     resources :bookings, only: %i(create index)
+    resources :users, only: :show
 
     namespace :admin do
         resources :bookings, only: [:index, :update]

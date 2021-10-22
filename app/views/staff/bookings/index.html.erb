@@ -1,6 +1,6 @@
 <%= render "staff/bookings/filter" %>
 <hr/>
-<%= render "shared/paginate", object: @bookings %>
+<%= render("shared/paginate", object: @bookings) if @bookings.any? %>
 <table class="table">
   <thead>
     <tr>
@@ -12,6 +12,6 @@
     </tr>
   </thead>
   <tbody>
-    <%= render @bookings %>
+    <%= render @bookings if @bookings.any? %>
   </tbody>
 </table>

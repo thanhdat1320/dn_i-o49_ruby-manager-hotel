@@ -38,7 +38,7 @@ class Admin::BookingsController < ApplicationController
 
   def filter_params
     # permit and remember filter_params
-    session[:filter_params] = params.permit(:page, :status)
+    session[:filter_params] = params.permit(:page, :status, :user_name)
   end
 
   def booking_params

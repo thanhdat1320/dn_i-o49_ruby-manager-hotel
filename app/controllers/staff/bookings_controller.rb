@@ -6,8 +6,10 @@ class Staff::BookingsController < ApplicationController
   # before action
 
   def load_bookings
-    @bookings = Booking.all_as_admin filter_params
-    @bookings = @bookings.status_is filter_params[:status]
+    @bookings = Booking.status_is filter_params[:status]
+    return if @bookings.any?
+
+    flash[:warning] = t :empty
   end
 
   # param permit
