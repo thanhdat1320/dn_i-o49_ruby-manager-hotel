@@ -1,0 +1,9 @@
+<section>
+  <div class="container">
+    <%= paginate @rooms %>
+    <div class="row g-3">
+      <%= render @rooms %>
+    </div>
+    <%= paginate @rooms %>
+  </div>
+</section>
