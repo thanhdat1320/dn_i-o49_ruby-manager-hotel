@@ -6,4 +6,15 @@ vi:
       home: "Trang chủ"
       help: "Trợ giúp"
       log in: "Đăng nhập"
-      
+  submit: gửi
+  search: tìm kiếm 
+  price_desc: giảm 
+  price_asc: tăng  
+  empty_result: Không có kêt quả
+  views:
+    pagination:
+      first: "&laquo; Đầu tiên"
+      last: "Cuối cùng &raquo;"
+      previous: "&lsaquo; Trước đó"
+      next: "Tiếp theo &rsaquo;"
+      truncate: "&hellip;"

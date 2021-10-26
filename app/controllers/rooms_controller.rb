@@ -2,7 +2,9 @@ class RoomsController < ApplicationController
   before_action :load_rooms, except: %i(show)
   before_action :load_room, only: %i(show)
 
-  def index; end
+  def index
+    @attributes = RoomAttribute.pluck(:name, :id)
+  end
 
   def show; end
 
@@ -17,11 +19,11 @@ class RoomsController < ApplicationController
   end
 
   def load_rooms
-    # sort scope will add in another task
-    @rooms = Room.page(params[:page]).per(Settings.digit.length_10)
-    return if @rooms.any?
+    @rooms = Room.room_filter room_params
+    flash.now[:danger] = t :empty_result unless @rooms.any?
+  end
 
-    flash[:danger] = t :empty_result
-    redirect_to root_path
+  def room_params
+    params.permit(:sort, :keyword, :page, :locale, attributes: [])
   end
 end
