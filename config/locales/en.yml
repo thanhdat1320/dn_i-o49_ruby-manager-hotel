@@ -6,3 +6,15 @@ en:
       home: "Home"
       help: "Help"
       log in: "Log in"
+  submit: submit
+  search: seach
+  price_desc: desc
+  price_asc: asc
+  empty_result: empty result
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"  

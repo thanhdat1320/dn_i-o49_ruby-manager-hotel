@@ -1,9 +1,18 @@
 <section>
   <div class="container">
-    <%= paginate @rooms %>
-    <div class="row g-3">
-      <%= render @rooms %>
+    <div class="row g-3 mt-3">
+      <div class="col-4">
+        <%= render "rooms/filter" %>
+      </div>
+      <div class="col-8">
+        <div class="row g-3">
+          <%= render @rooms %>
+        </div>
+      </div>
+      <div class="col-12">
+        <%= render "shared/paginate", object: @rooms %>
+      </div>
     </div>
-    <%= paginate @rooms %>
+
   </div>
 </section>

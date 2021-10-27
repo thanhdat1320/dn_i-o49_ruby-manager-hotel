@@ -1,0 +1,18 @@
+<section>
+  <%= form_with method: :get, html: { class:"row gy-3" } do |form| %>
+    <div class="col-12">
+      <%= form.select :attributes, @attributes, {}, { class: "form-select", multiple: true }  %>
+    </div>
+    <div class="col-12">
+      <%= form.select :sort, [[t(:price_desc), :desc], [t(:price_asc), :asc]], {}, { class: "form-select" } %>
+    </div>
+    <div class="col-12">
+      <div class="input-group">
+        <%= form.text_field :keyword, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-12">
+      <%= form.submit t(:search), class: "btn btn-outline-primary w-100" %>
+    </div>
+  <% end %>
+</section>
