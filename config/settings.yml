@@ -1,4 +1,5 @@
 digit:
   length_4: 4 
+  length_6: 6
   length_10: 10
   length_255: 255

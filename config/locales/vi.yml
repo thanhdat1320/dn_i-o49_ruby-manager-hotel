@@ -18,3 +18,20 @@ vi:
       previous: "&lsaquo; Trước đó"
       next: "Tiếp theo &rsaquo;"
       truncate: "&hellip;"
+      log_in: "Đăng nhập"
+      account: "Tai khoan"
+      profile: "Ca nhan"
+      settings: "Chinh sua"
+      log_out: "Dang xuat"
+  sessions:
+    new:
+      please_sign_in: "Ban can dang nhap de tiep tuc su dung"
+      password: "Mat khau"
+      forgot_password: "Quen mat khau"
+      remember_me: "Nho thiet bi"
+      log_in: "Dang nhap"
+  controllers:
+    sessions_controller:
+      invalid_login: "Danh nhap that bai!"
+    users_controller:
+      user_not_found: "Nguoi tim thay nguoi dung"

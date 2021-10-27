@@ -1,0 +1,17 @@
+<section>
+  <div class="container">
+  <h1 class="h3 mb-3 fw-normal"><%= t(".please_sign_in")%></h1>
+  <%= form_for :session, url: login_path do |f| %>
+    <%= f.label :email, t(".email") %>
+    <%= f.email_field :email, class: "form-control", placeholder: "name@example.com" %>
+    <%= f.label :password, t(".password") %>
+    <%= link_to t(".forgot_password") %>
+    <%= f.password_field :password, class: "form-control", placeholder: t(".password") %>
+    <%= f.label :remember_me do %>
+      <%= f.check_box :remember_me %>
+      <span><%= t ".remember_me" %></span>
+    <% end %>
+    <%= f.submit t(".log_in"), class: "w-100 btn btn-outline-primary" %>
+  <% end %>
+  </div>
+</section>
