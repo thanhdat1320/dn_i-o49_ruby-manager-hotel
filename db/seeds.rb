@@ -1,13 +1,11 @@
-r = Random.new
-
 20.times do |n|
-  image = Faker::LoremFlickr.image + "?random=" + r.rand(1000).to_s
+  image = Faker::LoremFlickr.image + "?random=" + rand(1000).to_s
   price = Faker::Commerce.price
-  level = r.rand(4)
-  status = r.rand(2)
+  level = rand(4)
+  status = rand(2)
   description = Faker::Lorem.paragraphs(number: 2)
   name = Faker::Company.name
-  room = Room.create!(
+  Room.create!(
     image: image,
     price: price,
     level: level,
@@ -25,8 +23,76 @@ end if RoomAttribute.count < 10
 
 rooms = Room.all
 rooms.each do |room| 
-  attributes = RoomAttribute.order(Arel.sql("RANDOM()")).first r.rand(5)
+  attributes = RoomAttribute.order(Arel.sql("RANDOM()")).first rand(5)
   attributes.each do |attribute|
     RoomAttributeGroup.create!(room_id:room.id, room_attribute_id:attribute.id)
   end
 end if RoomAttributeGroup.count < 10
+
+10.times do |n|
+  status = rand(4)
+  booking = Booking.create!(status: status)
+  rand(10).times do 
+    date_in = rand(10.day).seconds.ago
+    date_out = date_in + rand(5.hours)
+    booking.booking_details.create!(date_in: date_in, date_out: date_out)
+  end
+  furniture = Faker::House.furniture
+  RoomAttribute.create!(name: furniture)
+end if RoomAttribute.count < 10
+User.create!(
+    name: "Đàm Vĩnh Biệt",
+    email: "dam@gmail.com",
+    phone: "0332813079",
+    password:              "12345678",
+    password_confirmation: "12345678",
+    role: 2
+)
+User.create!(
+    name: "Nguyễn Huỳnh Thanh Đạt",
+    email: "dat@gmail.com",
+    phone: "0332813078",
+    password:              "12345678",
+    password_confirmation: "12345678",
+    role: 1
+)
+User.create!(
+    name: "Trần Ngọc Huy",
+    email: "truongduchuy910@gmail.com",
+    phone: "0332813077",
+    password:              "truongduc910",
+    password_confirmation: "truongduc910",
+    role: 0
+)
+3.times do |n|
+  name  = Faker::Name.name
+  email = Faker::Internet.email
+  phone = Faker::PhoneNumber.phone_number
+  password = "password"
+  User.create!(
+    name: name,
+    email: email,
+    phone: phone,
+    password:              password,
+    password_confirmation: password
+  )
+end if User.count < 3
+
+20.times do |n|
+  status = rand(4)
+  user = User.order(Arel.sql("RANDOM()")).first
+  booking = Booking.create!(
+    status: status,
+    user_id: user.id,
+  )
+  rand(5).times do 
+    room = Room.order(Arel.sql("RANDOM()")).first
+    date_in = rand(10.day).seconds.ago
+    date_out = date_in + rand(8.hours)
+    booking.booking_details.create!(
+      room_id: room.id,
+      date_in: date_in, 
+      date_out: date_out,
+    )
+  end
+end if Booking.count < 20
