@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
 
     namespace :staff do
-      resources :bookings, only: %i(index)
+      resources :bookings, only: [:index, :update]
     end
   end
 end
