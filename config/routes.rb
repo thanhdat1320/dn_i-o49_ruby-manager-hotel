@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :rooms, only: :index
 
     namespace :admin do
-        resources :bookings, only: :index
+        resources :bookings, only: [:index, :update]
         resources :rooms, only: :index do
           collection { 
             get :export 
