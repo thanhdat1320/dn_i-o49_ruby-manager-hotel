@@ -1,4 +1,8 @@
 vi:
+  en: "English"
+  vi: "Tiếng Việt"
+  login: "Đăng nhập"
+  logout: "Đăng xuất"
   base_title: "Sun khach san"
   layouts:
     header:
@@ -35,3 +39,10 @@ vi:
       invalid_login: "Danh nhap that bai!"
     users_controller:
       user_not_found: "Nguoi tim thay nguoi dung"
+  date:
+    month_names: "Tháng"
+    abbr_month_names:
+      -
+    formats:
+      default: "%d-%m-%Y"
+      short: "%d-%m"
