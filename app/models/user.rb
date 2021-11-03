@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   belongs_to :contact, optional: true
+  has_many :bookings, dependent: :destroy
+
   enum role: {admin: 0, staff: 1, customer: 2}
   attr_accessor :remember_token
 
