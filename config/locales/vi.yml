@@ -56,3 +56,7 @@ vi:
   bookings_controller:
     booking_successfull: "Dat phong thanh cong!"
     booking_fail: "Dat phong that bai!"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} giờ trước"
+  profile: "Thông tin"
