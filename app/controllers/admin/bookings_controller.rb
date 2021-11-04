@@ -20,6 +20,7 @@ class Admin::BookingsController < ApplicationController
   def load_bookings
     @bookings = Booking.preload(:booking_details)
                        .status_is(filter_params[:status])
+                       .user_name_search(filter_params[:user_name])
                        .pagination_at(filter_params[:page])
     return if @bookings.any?
 
