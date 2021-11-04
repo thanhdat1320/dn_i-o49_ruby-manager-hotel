@@ -1,14 +1,19 @@
 class RoomsController < ApplicationController
-  before_action :load_rooms, except: %i(show)
+  before_action :load_rooms, only: %i(index)
   before_action :load_room, only: %i(show)
+  before_action :load_attributes
 
-  def index
-    @attributes = RoomAttribute.pluck(:name, :id)
-  end
+  def index; end
 
   def show; end
 
   private
+
+  # before action
+
+  def load_attributes
+    @attributes = RoomAttribute.pluck(:name, :id)
+  end
 
   def load_room
     @room = Room.find_by id: params[:id]
@@ -19,11 +24,21 @@ class RoomsController < ApplicationController
   end
 
   def load_rooms
-    @rooms = Room.room_filter room_params
-    flash.now[:danger] = t :empty_result unless @rooms.any?
+    attrs = filter_params[:attributes] || []
+    @rooms = Room.available
+                 .price_sort(filter_params[:sort])
+                 .name_search(filter_params[:keyword])
+                 .pagination_at(filter_params[:page])
+
+    @rooms = @rooms.has_attributes attrs if attrs.length > 1
+    return if @rooms.any?
+
+    flash.now[:danger] = t :empty
   end
 
-  def room_params
-    params.permit(:sort, :keyword, :page, :locale, attributes: [])
+  # params permit
+
+  def filter_params
+    params.permit(:id, :sort, :keyword, :page, :locale, attributes: [])
   end
 end
