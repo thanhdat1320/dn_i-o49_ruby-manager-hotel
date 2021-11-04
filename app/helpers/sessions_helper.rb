@@ -15,6 +15,16 @@ module SessionsHelper
     end
   end
 
+  def is_admin?
+    current_user.admin?
+  end
+
+  def namespace_bookings_path
+    return admin_bookings_path if is_admin?
+
+    bookings_path
+  end
+
   def logged_in?
     current_user.present?
   end

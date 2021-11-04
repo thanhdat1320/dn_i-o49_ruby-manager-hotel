@@ -14,7 +14,30 @@
     name: name,
   )
 end if Room.count < 20
-
+User.create!(
+    name: "Đàm Vĩnh Biệt",
+    email: "dam@gmail.com",
+    phone: "0332813079",
+    password:              "12345678",
+    password_confirmation: "12345678",
+    role: 2
+)
+User.create!(
+    name: "Nguyễn Huỳnh Thanh Đạt",
+    email: "dat@gmail.com",
+    phone: "0332813078",
+    password:              "12345678",
+    password_confirmation: "12345678",
+    role: 1
+)
+User.create!(
+    name: "Trần Ngọc Huy",
+    email: "truongduchuy910@gmail.com",
+    phone: "0332813077",
+    password:              "truongduc910",
+    password_confirmation: "truongduc910",
+    role: 0
+)
 10.times do |n|
   furniture = Faker::House.furniture
   RoomAttribute.create!(name: furniture)
