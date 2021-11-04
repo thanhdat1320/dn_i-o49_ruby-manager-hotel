@@ -6,10 +6,12 @@ class Staff::BookingsController < ApplicationController
   # before action
 
   def load_bookings
-    @bookings = Booking.status_is filter_params[:status]
+    @bookings = Booking.preload(:booking_details)
+                       .status_is(filter_params[:status])
+                       .pagination_at(filter_params[:page])
     return if @bookings.any?
 
-    flash[:warning] = t :empty
+    flash.now[:warning] = t :empty
   end
 
   # param permit
