@@ -19,7 +19,7 @@ Rails.application.routes.draw do
             post :import 
           }
         end
-
+    end
     namespace :staff do
       resources :bookings, only: [:index, :update]
     end
