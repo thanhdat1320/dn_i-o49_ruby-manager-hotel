@@ -41,12 +41,17 @@ class Admin::RoomsController < ApplicationController
     params.permit(:page)
   end
 
-  rescue_from ActionController::ParameterMissing do |_e|
+  rescue_from ActionController::ParameterMissing do
     flash[:danger] = t :missing
     redirect_to admin_rooms_path
   end
 
-  rescue_from CSV::MalformedCSVError do |_e|
+  rescue_from CSV::MalformedCSVError do
+    flash[:danger] = t :in_valid
+    redirect_to admin_rooms_path
+  end
+
+  rescue_from ActiveRecord::RecordInvalid do
     flash[:danger] = t :in_valid
     redirect_to admin_rooms_path
   end
