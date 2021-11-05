@@ -3,12 +3,16 @@ class Admin::BookingsController < ApplicationController
   before_action :load_booking, only: %i(update)
 
   def update
-    if @booking.update booking_params
+    ActiveRecord::Base.transaction do
+      @booking.update booking_params
       flash[:success] = t :success
-    else
-      flash[:warning] = t :warning
+      @booking.booking_details.each do |detail|
+        detail.room.unavailable!
+      end
+      redirect_to admin_bookings_path session[:filter_params]
     end
-    redirect_to admin_bookings_path session[:filter_params]
+  rescue ActiveRecord::RecordInvalid
+    flash[:warning] = t :invalid
   end
 
   def index; end
