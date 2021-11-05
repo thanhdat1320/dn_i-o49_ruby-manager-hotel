@@ -59,3 +59,4 @@ vi:
     distance_in_words:
       about_x_hours: "%{count} giờ trước"
   profile: "Thông tin"
+  delete: delete

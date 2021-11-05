@@ -1,5 +1,5 @@
 class Staff::BookingsController < ApplicationController
- before_action :load_bookings, only: %i(index)
+  before_action :load_bookings, only: %i(index)
   before_action :load_booking, only: %i(update)
 
   def update
@@ -45,6 +45,5 @@ class Staff::BookingsController < ApplicationController
     raw_params = params.require(:booking).permit(:status)
     raw_params[:status] = params[:booking][:status].to_i
     raw_params
-    byebug
   end
 end

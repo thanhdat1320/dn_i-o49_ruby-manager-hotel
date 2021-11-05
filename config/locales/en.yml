@@ -50,3 +50,4 @@ en:
   export: "Export"
   booking_successfull: "Booking successfull!"
   booking_fail: "Booking fail!"
+  delete: delete
