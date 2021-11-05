@@ -1,8 +1,6 @@
 class BookingsController < ApplicationController
   before_action :load_bookings, only: %i(index)
   before_action :logged_in_user, :check_session_room_id, only: :create
-  before_action :load_bookings, only: %i(index)
-  before_action :logged_in_user, :check_session_room_id, only: :create
 
   def index; end
 
@@ -10,10 +8,10 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.build
     if Booking.create_booking @booking, params[:room_id],
                               checkin_param, checkout_param
-      flash[:success] = t "controllers.bookings_controller.booking_successfull"
+      flash[:success] = t :booking_successfull
       redirect_to root_path
     else
-      flash[:warning] = t "controllers.bookings_controller.booking_fail"
+      flash[:warning] = t :booking_fail
       redirect_to confirm_path
     end
   end
@@ -37,11 +35,11 @@ class BookingsController < ApplicationController
   end
 
   def checkin_param
-    session[params[:room_id]]["date_in"]
+    session[params[:room_id]]["date_in"] unless params[:room_id].nil?
   end
 
   def checkout_param
-    session[params[:room_id]]["date_out"]
+    session[params[:room_id]]["date_out"] unless params[:room_id].nil?
   end
 
   def check_session_room_id

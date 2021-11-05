@@ -48,9 +48,6 @@ vi:
       short: "%d-%m"
   import: "Nhập"
   export: "Xuất"
-  bookings_controller:
-    booking_successfull: "Dat phong thanh cong!"
-    booking_fail: "Dat phong that bai!"
   time:
     formats:
       default: "%d-%m-%Y"

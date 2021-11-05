@@ -10,6 +10,9 @@ class Booking < ApplicationRecord
   # accept: room has accepted by admin or staff
   # remove: guest cancel booking
 
+  scope :all_as_admin,
+        ->(filter_params){pagination_at filter_params[:page]}
+
   scope :pagination_at,
         ->(page){page(page || 0).per(Settings.digit.length_4)}
 

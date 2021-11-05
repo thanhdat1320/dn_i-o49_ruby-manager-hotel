@@ -23,6 +23,7 @@ en:
   invalid_login: "Invalid login"
   login: "Please sign in"
   not_found: "Not found in session"
+  confirm: "Confirm"
   views:
     pagination:
       first: "&laquo; First"
@@ -47,6 +48,5 @@ en:
       user_not_found: "User not found"
   import: "Import"
   export: "Export"
-  bookings_controller:
-    booking_successfull: "Booking successfull!"
-    booking_fail: "Booking fail!"
+  booking_successfull: "Booking successfull!"
+  booking_fail: "Booking fail!"
