@@ -30,4 +30,8 @@ class Booking < ApplicationRecord
       booking.active! if booking.inactive?
     end
   end
+
+  def self.user_name_search keyword
+    joins(:user).where("users.name LIKE ?", "%#{keyword}%")
+  end
 end

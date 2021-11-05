@@ -1,5 +1,8 @@
 class BookingsController < ApplicationController
+  before_action :load_bookings, only: %i(index)
   before_action :logged_in_user, :check_session_room_id, only: :create
+
+  def index; end
 
   def create
     @booking = current_user.bookings.build
@@ -11,6 +14,24 @@ class BookingsController < ApplicationController
       flash[:warning] = t "controllers.bookings_controller.booking_fail"
       redirect_to confirm_path
     end
+  end
+
+  private
+
+  # before action
+
+  def load_bookings
+    @bookings = current_user.bookings.status_is filter_params[:status]
+    @bookings = @bookings.pagination_at filter_params[:page]
+    return if @bookings.any?
+
+    flash.now[:warning] = t :empty
+  end
+
+  # param permit
+
+  def filter_params
+    params.permit(:page, :status)
   end
 
   def checkin_param
