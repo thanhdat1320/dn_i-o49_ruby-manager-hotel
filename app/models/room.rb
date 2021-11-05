@@ -32,7 +32,9 @@ class Room < ApplicationRecord
   def self.import file
     CSV.foreach(file.path, headers: true) do |row|
       room_hash = row.to_hash
-      room = find_or_create_by!(id: room_hash["id"])
+      room = find_or_create_by!(id: room_hash["id"],
+                                name: room_hash["name"],
+                                price: room_hash["price"])
       room.update(room_hash)
     end
   end
