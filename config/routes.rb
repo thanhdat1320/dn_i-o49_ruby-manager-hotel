@@ -7,13 +7,19 @@ Rails.application.routes.draw do
     post :login, to: "sessions#create"
     delete :logout, to: "sessions#destroy"
     post :sessions_update, to: "sessions#update"
+    resources :rooms, only: [:index, :show]
+    resources :bookings, only: %i(create index)
     resources :users, only: :show
-    resources :bookings, only: %i(index create)
 
     namespace :admin do
         resources :bookings, only: [:index, :update]
+        resources :rooms, only: :index do
+          collection { 
+            get :export 
+            post :import 
+          }
+        end
     end
-
     namespace :staff do
       resources :bookings, only: [:index, :update]
     end

@@ -11,11 +11,11 @@ en:
       help: "Help"
       log_in: "Log in"
       log_out: "Log out"
-  submit: submit
-  search: seach
-  price_desc: desc
-  price_asc: asc
-  empty_result: empty result
+  submit: "submit"
+  search: "seach"
+  price_desc: "desc"
+  price_asc: "asc"
+  empty_result: "empty result"
   booking: "Booking"
   confirm: "Confirm"
   checkin: "Checkout > checkin"
@@ -46,6 +46,7 @@ en:
   controllers:
     users_controller:
       user_not_found: "User not found"
-    bookings_controller:
-      booking_successfull: "Booking successfull!"
-      booking_fail: "Booking fail!"
+  import: "Import"
+  export: "Export"
+  booking_successfull: "Booking successfull!"
+  booking_fail: "Booking fail!"
