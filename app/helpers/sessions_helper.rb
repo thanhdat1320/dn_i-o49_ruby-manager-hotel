@@ -26,6 +26,17 @@ module SessionsHelper
     bookings_path
   end
 
+  def namespace_rooms_path
+    return admin_rooms_path if is_admin?
+    return staff_rooms_path if is_staff?
+
+    root_path
+  end
+
+  def is_customer?
+    current_user.customer?
+  end
+
   def is_staff?
     current_user.staff?
   end

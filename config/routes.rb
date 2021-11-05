@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :staff do
+    get 'rooms/index'
+  end
   scope "(:locale)", locale: /en|vi/ do
     root :to => "rooms#index"
     get :confirm, to: "rooms#confirm"
@@ -20,8 +23,10 @@ Rails.application.routes.draw do
           }
         end
     end
+
     namespace :staff do
       resources :bookings, only: [:index, :update]
+      resources :rooms, only: :index
     end
   end
 end
