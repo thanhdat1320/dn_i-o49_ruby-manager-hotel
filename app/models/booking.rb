@@ -3,6 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :contact, optional: true
   has_many :booking_details, dependent: :destroy
   has_many :rooms, through: :booking_details
+  after_update :update_status
 
   enum status: {inactive: 0, active: 1, accept: 2, remove: 3}
   # inactive: room not booking
@@ -30,5 +31,11 @@ class Booking < ApplicationRecord
 
   def self.user_name_search keyword
     joins(:user).where("users.name LIKE ?", "%#{keyword}%")
+  end
+
+  def update_status
+    @booking.booking_details.each do |detail|
+      detail.room.unavailable!
+    end
   end
 end
