@@ -1,8 +1,18 @@
 class BookingsController < ApplicationController
   before_action :load_bookings, only: %i(index)
+  before_action :load_booking, only: %i(update)
   before_action :logged_in_user, :check_session_room_id, only: :create
 
   def index; end
+
+  def update
+    if @booking.inactive!
+      flash[:success] = t :success
+      redirect_to bookings_path
+    else
+      flash[:warning] = t :invalid
+    end
+  end
 
   def create
     @booking = current_user.bookings.build
@@ -26,6 +36,13 @@ class BookingsController < ApplicationController
     return if @bookings.any?
 
     flash.now[:warning] = t :empty
+  end
+
+  def load_booking
+    @booking = Booking.find params[:id]
+    return if @booking
+
+    flash.now[:warning] = t :not_found
   end
 
   # param permit

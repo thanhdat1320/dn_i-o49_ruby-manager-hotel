@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     delete :logout, to: "sessions#destroy"
     post :sessions_update, to: "sessions#update"
     resources :rooms, only: [:index, :show]
-    resources :bookings, only: %i(create index)
+    resources :bookings, only: %i(create index update)
     resources :users, only: :show
 
     namespace :admin do
